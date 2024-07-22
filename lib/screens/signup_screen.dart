@@ -1,5 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_auth_firebase/Services/authentication.dart';
+import 'package:flutter_auth_firebase/screens/home_screen.dart';
 import 'package:flutter_auth_firebase/screens/login_screen.dart';
+import 'package:flutter_auth_firebase/widgets/snack_bar.dart';
 
 import '../widgets/button_widget.dart';
 import '../widgets/text_widget.dart';
@@ -16,7 +20,36 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
   bool isLoading = false;
-  
+
+  @override
+  void dispose() {
+    super.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _nameController.dispose();
+  }
+
+
+  void signUser() async {
+    String res = await AuthServices().signupUser(
+        email: _emailController.text,
+        password: _passwordController.text,
+        name: _nameController.text);
+
+    if (res == "success") {
+      setState(() {
+        isLoading = true;
+      });
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const HomeScreen()));
+    } else {
+      setState(() {
+        isLoading = false;
+      });
+      showSnackBar(context, res);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -36,38 +69,43 @@ class _SignupScreenState extends State<SignupScreen> {
                     textEditingController: _nameController,
                     hintText: "Entrez votre nom complet",
                     icon: Icons.person),
-                  TextFieldInput(
+                TextFieldInput(
                     textEditingController: _emailController,
                     hintText: "Entrez votre email",
                     icon: Icons.email),
                 TextFieldInput(
                     textEditingController: _passwordController,
                     hintText: "Entrez votre mot de passe",
+                    isPass: true,
                     icon: Icons.lock),
-                
-                ButtonWidget(onTab: () {}, text: "S'inscrire"),
+                isLoading
+                    ? const CircularProgressIndicator()
+                    : ButtonWidget(onTab: signUser, text: "S'inscrire"),
                 SizedBox(height: height / 15),
-                Row (
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                     const Text("Vous avez déja un compte?", style: TextStyle(fontSize: 16),),
-                GestureDetector(
-                    onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const LoginScreen(),
-                      ),
-                    );
-                  },
-                  child: const Text(
-                    " Se connecter",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
+                    const Text(
+                      "Vous avez déja un compte?",
+                      style: TextStyle(fontSize: 16),
                     ),
-                  ),
-                )
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const LoginScreen(),
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        " Se connecter",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                    )
                   ],
                 )
               ],
