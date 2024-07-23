@@ -23,12 +23,11 @@ class _SignupScreenState extends State<SignupScreen> {
 
   @override
   void dispose() {
-    super.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     _nameController.dispose();
+    super.dispose();
   }
-
 
   void signUser() async {
     String res = await AuthServices().signupUser(
@@ -56,7 +55,8 @@ class _SignupScreenState extends State<SignupScreen> {
     return Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(
-          child: SizedBox(
+          child: SingleChildScrollView(
+            child: SizedBox(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -66,18 +66,24 @@ class _SignupScreenState extends State<SignupScreen> {
                   child: Image.asset("images/signup.jpeg"),
                 ),
                 TextFieldInput(
-                    textEditingController: _nameController,
-                    hintText: "Entrez votre nom complet",
-                    icon: Icons.person),
+                  textEditingController: _nameController,
+                  hintText: "Entrez votre nom complet",
+                  icon: Icons.person,
+                  textInputType: TextInputType.name,
+                ),
                 TextFieldInput(
-                    textEditingController: _emailController,
-                    hintText: "Entrez votre email",
-                    icon: Icons.email),
+                  textEditingController: _emailController,
+                  hintText: "Entrez votre email",
+                  icon: Icons.email,
+                  textInputType: TextInputType.emailAddress,
+                ),
                 TextFieldInput(
-                    textEditingController: _passwordController,
-                    hintText: "Entrez votre mot de passe",
-                    isPass: true,
-                    icon: Icons.lock),
+                  textEditingController: _passwordController,
+                  hintText: "Entrez votre mot de passe",
+                  isPass: true,
+                  icon: Icons.lock,
+                  textInputType: TextInputType.visiblePassword,
+                ),
                 isLoading
                     ? const CircularProgressIndicator()
                     : ButtonWidget(onTab: signUser, text: "S'inscrire"),
@@ -110,6 +116,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 )
               ],
             ),
+          ),
           ),
         ));
   }

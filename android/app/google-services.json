@@ -12,7 +12,20 @@
           "package_name": "com.example.flutter_auth_firebase"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "719287824090-rp4vurle8l5e2799gp2q2ehe51kejj1q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flutter_auth_firebase",
+            "certificate_hash": "4f2f7ac505f18dbaf967ae141326dd51ef285899"
+          }
+        },
+        {
+          "client_id": "719287824090-hsv85o1m6ben8ll538l14n4lfls92nv9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCfXSPi8y0Ua0CxTV0q0HZNi41tHzNI69U"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "719287824090-hsv85o1m6ben8ll538l14n4lfls92nv9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "719287824090-b7d410s9irm53d4k3cadcb1leaqq9l5b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterAuthFirebase"
+              }
+            }
+          ]
         }
       }
     },
@@ -31,7 +56,12 @@
           "package_name": "com.example.instagram"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "719287824090-hsv85o1m6ben8ll538l14n4lfls92nv9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCfXSPi8y0Ua0CxTV0q0HZNi41tHzNI69U"
@@ -39,7 +69,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "719287824090-hsv85o1m6ben8ll538l14n4lfls92nv9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "719287824090-b7d410s9irm53d4k3cadcb1leaqq9l5b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterAuthFirebase"
+              }
+            }
+          ]
         }
       }
     }
